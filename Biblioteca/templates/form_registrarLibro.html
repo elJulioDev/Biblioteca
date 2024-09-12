@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Formulario de Registro</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        button {
+            width: 100%;
+        }
+    </style>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>Formulario de Registro de Libros</h2>
+        {% if messages %}
+        <div class="alert alert-success">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nlib">Nombre</label>
+                <input type="text" class="form-control" id="nlib" name="nlib" placeholder="Ingresa Nombre del libro" required>
+            </div>
+            <div class="form-group">
+                <label for="lser">Numero de serie</label>
+                <input type="number" class="form-control" id="lser" name="lser" placeholder="Ingresa el numero de serie" required>
+            </div>
+            <div class="form-group">
+                <label for="lautor">Autor</label>
+                <select class="form-control" id="lautor" name="lautor" required>
+                    {% for autor in autores %}
+                        <option value="{{ autor.id }}">{{ autor.Nombre_Aut }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="lcat">Categoria</label>
+                <select class="form-control" id="lcat" name="lcat" required>
+                    {% for categoria in categoria %}
+                        <option value="{{ categoria.id }}">{{ categoria.Nombre_Cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ledi">Editorial</label>
+                <select class="form-control" id="ledi" name="ledi" required>
+                    {% for editorial in editorial %}
+                        <option value="{{ editorial.id }}">{{ editorial.Nombre_Edi }}</option>
+                    {% endfor %}
+                </select>
+            </div>            
+            <div class="form-group">
+                <label for="lpublicacion">Publicacion</label>
+                <input type="date" class="form-control" id="lpublicacion" name="lpublicacion" placeholder="Ingresa la fecha de publicacion" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+        <div class="form-group text-center">
+            <a href="index_admin/" class="btn btn-secondary w-100 mt-3">Volver</a>
+        </div>
+    </div>
+    
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js" integrity="sha384-E4rDQUVvZjYFdAIh8AfbikEEQgDBZlD+6B5PozpnQzVHL7joUGNEeCwo8AQaBq3" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyDySs0x66VRiqlVPrU5tB6EGgIpPDV2Hs" crossorigin="anonymous"></script>
+
+</body>
+</html>
